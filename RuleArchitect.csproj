@@ -4,13 +4,25 @@
     <TargetFramework>net472</TargetFramework>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
+	<RootNamespace>RuleArchitect</RootNamespace>  
     <LangVersion>10.0</LangVersion>
   </PropertyGroup>
 
 
   <ItemGroup>
-    <PackageReference Include="EntityFramework" Version="6.4.4" />
-    <PackageReference Include="System.Data.SQLite.EF6" Version="1.0.118.0" />
+    <PackageReference Include="EntityFramework" Version="6.5.1" />
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.113" />
+    <PackageReference Include="System.Data.SQLite.EF6" Version="1.0.113" />
+    <PackageReference Include="System.Data.SQLite.EF6.Migrations" Version="1.0.113" />
   </ItemGroup>
+
+	<ItemGroup>
+		<!-- This rule updates all .resx files in the Migrations folder -->
+		<EmbeddedResource Update="Migrations\*.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>%(Filename).Designer.cs</LastGenOutput>
+			<ManifestResourceName>$(RootNamespace).Migrations.%(Filename.Substring(16))</ManifestResourceName>
+		</EmbeddedResource>
+	</ItemGroup>
 
 </Project>
